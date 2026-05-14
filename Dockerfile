@@ -26,6 +26,9 @@ WORKDIR /var/www
 # Copy existing application directory contents
 COPY . /var/www
 
+# Clear any cached packages/config from the host that might have been copied
+RUN rm -f bootstrap/cache/*.php
+
 # Install dependencies
 # Using --ignore-platform-reqs to prevent failures due to minor version mismatches or extension checks
 # Using --no-scripts to prevent Laravel's post-install scripts from failing during the build phase
