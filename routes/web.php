@@ -26,6 +26,16 @@ Route::post('/logout', function () {
     return redirect()->route('home');
 })->name('logout');
 
+// Temporary route to seed the database for Render free tier users
+Route::get('/seed-database', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        return 'Database seeded successfully! You can now log in.';
+    } catch (\Exception $e) {
+        return 'Error seeding database: ' . $e->getMessage();
+    }
+});
+
 // Blog Routes
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');

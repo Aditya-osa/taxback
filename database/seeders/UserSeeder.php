@@ -12,22 +12,19 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@taxlegal.com',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'admin@taxlegal.com'],
+            ['name' => 'Admin User', 'password' => bcrypt('password')]
+        );
 
-        User::create([
-            'name' => 'John Doe',
-            'email' => 'john@taxlegal.com',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'john@taxlegal.com'],
+            ['name' => 'John Doe', 'password' => bcrypt('password')]
+        );
 
-        User::create([
-            'name' => 'Jane Smith',
-            'email' => 'jane@taxlegal.com',
-            'password' => bcrypt('password'),
-        ]);
+        User::updateOrCreate(
+            ['email' => 'jane@taxlegal.com'],
+            ['name' => 'Jane Smith', 'password' => bcrypt('password')]
+        );
     }
 }
