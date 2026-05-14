@@ -17,6 +17,15 @@ use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 
 Route::get('/', [BlogController::class, 'index'])->name('home');
 
+// Auth Placeholders to prevent crashes in layouts
+Route::get('/login', function () {
+    return redirect()->route('home')->with('error', 'Login is handled via the API.');
+})->name('login');
+
+Route::post('/logout', function () {
+    return redirect()->route('home');
+})->name('logout');
+
 // Blog Routes
 Route::prefix('blog')->name('blog.')->group(function () {
     Route::get('/', [BlogController::class, 'index'])->name('index');
