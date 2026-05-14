@@ -40,8 +40,16 @@ RUN composer install \
     --ignore-platform-reqs \
     --no-scripts
 
+# Create required Laravel directories
+RUN mkdir -p \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache
+
 # Set permissions
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+RUN chown -R www-data:www-data storage bootstrap/cache
 
 # Default port for Render
 ENV PORT=8000
