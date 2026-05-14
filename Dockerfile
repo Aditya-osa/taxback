@@ -56,4 +56,4 @@ ENV PORT=8000
 EXPOSE 8000
 
 # Run migrations and start the server on Render's dynamic port
-CMD php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT}
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT}
